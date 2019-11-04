@@ -38,6 +38,15 @@ let find = arr.find((v)=>{
 
 p(find);    // 8
 
+// sorting
+
+// to sort for string
+arr.sort();  // it will sort only Alphabetically
+
+// to sort for integers
+arr.sort( (a, b) => {return a - b});  // this will sort Numerically
+
+
 // Iterating over array
 
 // 1. for loop
@@ -99,13 +108,12 @@ let filter = temp.filter( (ele) => ele > 6);
 p(filter);
 
 // reduce
-
 temp.reduce( (r, o) => {
   o.push(r);
-}, [])
+}, []);
 
 temp.reduce((o, a) => {
-      o.push(a);
-      return o;
-     }, [])
+  o.push(a);
+  return o;
+}, []);
 
