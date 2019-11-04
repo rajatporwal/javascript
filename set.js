@@ -83,3 +83,7 @@ p(setA.subSet(setC));   // false
 let unionSet = setB.union(setA); 
 
 unionSet.forEach( ele => p(ele));    // 10 20 30 50 60 40
+
+// convert set into array
+
+p([...new Set(setA)]);
