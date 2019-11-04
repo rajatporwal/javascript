@@ -6,44 +6,36 @@ let arr = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
 p(arr);
 
 arr.push("a", "b");   // js array can hold multiple data types.
-p(arr);
 
 arr.pop(); // removes last elemnet.
-p(arr);
 
-arr.unshift("c");    // Adding elements at the front of an array.
-p(arr);
+arr.unshift("c");    // unshift add elements at the front of an array.
 
-arr.shift();  // Removing elements from the front.
-p(arr);
+arr.shift();  // shift removes elements from the front.
 
 arr.splice(1, 3);   // remove elements from index 1 to 3.
-p(arr);
 
 arr.splice(1, 2, "b", "c");  // remove elements from 1-2 and add b and c from index 1.
-p(arr);
 
 arr.splice(3, 0, 'Pascal', "pass"); // adding elements from certain index without remvoing any.
-p(arr);
 
 // indexOf and lastIndexOf method will return  -1 if ele is not found
-p(arr.indexOf(1));        // return first element's index       // 0
-p(arr.lastIndexOf(1));    // // return last element's index     // 5
+
+arr.indexOf(1);        // return first element's index       // 0
+arr.lastIndexOf(1);    // // return last element's index     // 5
 
 // findIndex will return index of the element
 let findIndex = arr.findIndex((v)=>{
     return  v % 2 === 0;             
 }); 
 
-p("find Index");
 p(findIndex);       // 7
 
-// findwill return element
+// find will return element itself
 let find = arr.find((v)=>{
     return  v % 2 === 0;
 }); 
 
-p("find");
 p(find);    // 8
 
 // Iterating over array
@@ -57,7 +49,6 @@ p(find);    // 8
 // satisfy the given condition or not.
 
 let every =  arr.every( (ele) => ele < 5);
-p("every method");
 p(every);         // return type is boolean.
 
 // 5. array.entries()
@@ -78,11 +69,9 @@ for( let e of iterateValues) {
 
 // 7. array.map()
 let mappedArray = arr.map( (ele) => ele * 2 );   // used to create new array with same ele.
-p("using map")
-p(mappedArray);
 
 // reverse
-p(arr.reverse());
+arr.reverse();
 
 //  convert the element of the given array to string.
 
@@ -96,7 +85,7 @@ p(arr.toString());
 p(arr.toLocaleString());
 
 // valueOf: returns the array itself
-p(arr.valueOf());
+arr.valueOf();
 
 var date = new Date();
 date.valueOf();          //1540642478175
