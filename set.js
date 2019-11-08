@@ -106,4 +106,4 @@ let intersectionSet = setA.intersection(setC);  // [10, 30, 40, 50]
 let differenceSet = setA.difference(setC);  // [10, 20, 30]
 
 // convert set into array
-p([...new Set(setA)]);   //  [10, 20, 30, 50, 60, 40]
+[...new Set(setA)];   //  [10, 20, 30, 50, 60, 40]

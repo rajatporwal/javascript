@@ -2,6 +2,26 @@ function p(v) {
   console.log(v);
 }
 
+// why WeakMap.
+
+{
+  let x = {
+    a: [1,2]
+  };
+
+  var map = new Map();
+  var weakMap1 = new WeakMap();
+  map.set(x, "something");
+  weakMap1.set(x, "something");
+}
+
+p(map);         // this will have one entry as x, 
+                // bcs map don't allow you to garbage collect the values 
+                // even though let has block scope
+                //  but still we can access x out of the block
+
+p(weakMap1);  // here weakMap as 0 entries as x is garbage collected out og the box scope.
+
 let weakMap = new WeakMap();
 
 const a = {b: 1};
