@@ -16,3 +16,4 @@ weakSet.has(obj1);       // true
 
 weakSet.delete(obj1);    // true
 
+// we cannot iteratre over weakSets
