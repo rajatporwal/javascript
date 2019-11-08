@@ -20,27 +20,26 @@ var set = new Set();
   
   let setIteratorEntries = set.entries();   // return values in the form of array
   for(let ele of setIteratorEntries) {       
-    p(ele);                                   // ex. ["a", "a"]
+    ele;                                   // ex. ["a", "a"]
   }
   
   // values() and keys() are same in case of Sets
   let setIteratorKeys = set.keys();         // return values in string form
   for(let ele of setIteratorKeys) {
-    p(ele); 
+    ele; 
   }
   
   let setIteratorValues = set.values();         // return values in string form
   for(let ele of setIteratorValues) {
-    p(ele); 
+    ele; 
   }
   
   set.forEach( (ele) => {           // return values
-    p(ele);           
+    ele;           
   })
   
 
   //  subSet
-
   Set.prototype.subSet = function(otherSet) {
     if (this.size > otherSet.size) {
       return false;
@@ -53,33 +52,58 @@ var set = new Set();
       return true;
     }
  }
-    // Arrow functions do not have a prototype property. 
-    // Therefore we can make prototype function using ES6
 
-    // we can not use forEach loop here because we have to break the loop when condition meets,
-    // and we cannot forEach loop in between.
+// Arrow functions do not have a prototype property. 
+// Therefore we can make prototype function using ES6
+
+// we can not use forEach loop here because we have to break the loop when condition meets,
+// and we cannot forEach loop in between.
 
 // union
 Set.prototype.union = function(otherSet) {
-  this.forEach( ele => {
-    otherSet.add(ele);
-  });
-  return otherSet;
+  var unionSet = new Set(); 
+  for (var elem of this) { 
+    unionSet.add(elem); 
+  } 
+  for(var elem of otherSet) {
+      unionSet.add(elem); 
+  }
+  return unionSet; 
 }
 
 // intersection
+Set.prototype.intersection = function(otherSet) { 
+    var intersectionSet = new Set(); 
+    for(var elem of otherSet) { 
+      if(this.has(elem)) 
+        intersectionSet.add(elem); 
+    } 
+  return intersectionSet;                 
+} 
 
-Set.prototype.intersectio
-
+// difference
+Set.prototype.difference = function(otherSet) 
+{ 
+     var differenceSet = new Set(); 
+    for(var elem of this) { 
+        // if the value[i] is not present  
+        // in otherSet add to the differenceSet 
+        if(!otherSet.has(elem)) 
+            differenceSet.add(elem); 
+    } 
+    return differenceSet; 
+} 
 
 let setA = new Set([10, 20, 30]); 
 let setB = new Set([50, 60, 10, 20, 30, 40]); 
 let setC = new Set([10, 30, 40, 50]); 
  
+setA.subSet(setB);   // true
+setA.subSet(setC);   // false
 
-p(setA.subSet(setB));   // true
-p(setA.subSet(setC));   // false
+let unionSet = setB.union(setA);  // 10 20 30 50 60 40
+let intersectionSet = setA.intersection(setC);  // [10, 30, 40, 50]
+let differenceSet = setA.difference(setC);  // [10, 20, 30]
 
-let unionSet = setB.union(setA); 
-
-unionSet.forEach( ele => p(ele));    // 10 20 30 50 60 40
+// convert set into array
+[...new Set(setA)];   //  [10, 20, 30, 50, 60, 40]
