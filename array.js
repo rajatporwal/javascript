@@ -52,15 +52,8 @@ arr.sort( (a, b) => {return a - b});  // this will sort Numerically
 // 1. for loop
 // 2. while loop
 // 3 forEach method
-// 4. using every method
 
-// Array.every() function checks whether all the elements of the array
-// satisfy the given condition or not.
-
-let every =  arr.every( (ele) => ele < 5);
-p(every);         // return type is boolean.
-
-// 5. array.entries()
+// 4. array.entries()
 let iteratorEntries = arr.entries();   // used to get key and value pair for each index.
 p("iterator Entries");
 for( let e of iteratorEntries) { 
@@ -68,7 +61,7 @@ for( let e of iteratorEntries) {
     p(e);
 }
 
-// 6. array.values()
+// 5. array.values()
 let iterateValues = arr.values();   // used to values for each index.
 p("iterator Values");
 for( let e of iterateValues) { 
@@ -76,7 +69,7 @@ for( let e of iterateValues) {
     p(e);
 }
 
-// 7. array.map()
+// 6. array.map()
 let mappedArray = arr.map( (ele) => ele * 2 );   // used to create new array with same ele.
 
 // reverse
@@ -103,6 +96,28 @@ date.toLocaleString();   //"2018/10/27 8:14:38 PM"
 
 let temp = new Array(3, 4, 6, 7, 9);
 
+// Array.every() function checks whether all the elements of the array
+// satisfy the given condition or not.
+
+let every =  arr.every( (ele) => ele < 5);
+p(every);         // false    return type is boolean.
+
+// Array.some() function checks at least one of the elements of the array
+// satisfy the given condition.
+
+let some =  arr.some( (ele) => ele < 5);
+p(some);         // true    return type is boolean.
+
+// join(), joins every ele with the passed parameter 
+var a = [1, 2, 3, 4, 5, 6];
+a.join('|');    // 1|2|3|4|5|6
+
+// slice()  returns a new array containing a portion of the array
+p(a.slice(2,4));  // [3, 4]  end index is exclusive
+
+// fill() is used to fill the array with a given static value.
+a.fill(87);    // Input: [1, 2, 3, 4, 5, 6]     Output:  [87, 87, 87, 87, 87, 87]
+
 // filter
 let filter = temp.filter( (ele) => ele > 6);
 p(filter);
@@ -110,10 +125,13 @@ p(filter);
 // reduce
 temp.reduce( (r, o) => {
   o.push(r);
-}, []);
+}, [])
 
 temp.reduce((o, a) => {
-  o.push(a);
-  return o;
-}, []);
+      o.push(a);
+      return o;
+     }, [])
 
+// Array.of() method creates a new Array instance
+Array.of("Ram","Geeta"); 
+Array.of(2,3,4,'Sheeta'); 
