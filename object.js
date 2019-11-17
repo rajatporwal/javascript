@@ -33,7 +33,7 @@ Object.is(0,-0);    // false
 0 === -0;           // true
 
 // Object.assign is used for cloning object
-
+// if two variables have same name it will keep only lastone.
 let a1 = { a: 10 };      
 let a = Object.assign({}, a1);      // a1 is copied to the a.
 
@@ -41,12 +41,16 @@ let b1 = { a: 10 };
 let b2 = { b: 20 };
 let b3 = { c: 30 };
 let b = Object.assign(b1, b2, b3);       // b1, b2, b3 are copied b.
+Object.assign(b, b1, b2, b3);            // same as above, b1, b2, b3 are copied b.
 
 let c1 = { a: 10, b: 10, c: 10 };
 let c2 = { b: 20, c: 20 };
 let c3 = { c: 31 };
 let c = Object.assign({}, c1, c2, c3);    // c1, c2, c3 are copied to the c and the target object gets the overwritten values.
 
+// Object.prototype lets you set prototype of one object to another object.
+// i.e. it will also keep the track of all the variables if the name is same and keep them in proto.
+Object.setPrototypeOf(c2, c1);
 
 // freeze() is used to make the object immutable.
 const obj1 = {'a': 1};
