@@ -72,7 +72,6 @@ p(obj2);   //  { x:1, y:3 }
 
 Object.isSealed(obj1);   // true
 
-
 // Object.create() method is used to create a new object with the specified prototype object and properties. 
 // Object.create() method returns a new object with the specified prototype object and properties.
 
@@ -101,11 +100,13 @@ const car1 =  new Car("red");
 // this will not inherit color property
 const car2 =  Object.create(Car.prototype);
 
-const ToyCar = function() {
-
+const ToyCar = function(newcar, oldcar) {
+  this.newcar = newcar;
+  this.oldcar = oldcar;
 };
 
 // we want to add all the methods of Car in Toy.
+// Toycar will loose its constructor
 ToyCar.prototype = Object.create(Car.prototype);
 
 // set instance to ToyCar
@@ -117,3 +118,9 @@ console.log(LegoCar instanceof Object);      // true
 
 console.log(ToyCar.prototype.isPrototypeOf(LegoCar));    // true
 console.log(ToyCar instanceof Car)        // false
+
+// if we create prototype from other object 
+// than new object will loose its constructot
+
+//  :: setting constructor again or extending constructot.
+ToyCar.prototype.constructor = ToyCar();
