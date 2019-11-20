@@ -100,6 +100,12 @@ str.slice(10);  // eat day
 'z'.localeCompare('y');   // 1
 'y'.localeCompare('z');   // -1
 
+// String.raw skips the escape char and print it as it is.
+
+console.log(`Hello world:\n new line`)              // 'Hello world
+                                                    // new line'
+console.log(String.raw`Hello world:\n new line`)    // Hello world:\n new line
+
 // revese string
 const str1 = "Please reverse me";
 
