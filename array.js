@@ -132,6 +132,53 @@ temp.reduce((o, a) => {
       return o;
      }, [])
 
+// reduceRight reduces the array from right side
+const strR = ['t', 's', 'e', 'b'];
+
+const reduce = strR.reduce( (c, v) => c + v);         // tsed
+const reduce1 = strR.reduceRight( (c, v) => c + v);   // best
+
 // Array.of() method creates a new Array instance
 Array.of("Ram","Geeta"); 
 Array.of(2,3,4,'Sheeta'); 
+
+  // flat method flats the deeply nested array
+const matrix = [[1, 2, 3], [4, 5, 6]];
+const matrix2 = [[1,2], [4, 5, [[[3]]]]]
+
+// 1 will flat to only 1st level.
+const flat = matrix.flat(1);   // [1, 2, 3,4, 5, 6]
+const flat2 = matrix2.flat(1);   // [1, 2, 4, 5, [[[3]]] ]
+
+// Infinity will flat to only all nested levels.
+const flat3 = matrix2.flat(Infinity);   // [1, 2, 4, 5, 3]
+
+// flatMap flattens and map the array at the same time
+const nums = [1, 2, 3];
+const strs = ['one', 'two', 'three'];
+
+const mapped = nums.map( (val, i) => [val, strs[i]]);   // [ [1, 'one'], [2, 'two'], [3, 'three'] ]
+const mapped1 = nums.flatMap( (val, i) => [val, strs[i]]);   // [ 1, 'one', 2, 'two', 3, three]
+
+// Array.from() creates the new array from the iterable parameter passed to it.
+
+let s = "tech";
+[...s]           // ["t", "e", "c", "h"] 
+Array.from(s)   // ["t", "e", "c", "h"] 
+
+const fromScratch = Array.from({length: 3}, (v, i) => v);   // [undefined, undefined, undefined]
+const fromScratch1 = Array.from({length: 3}, (v, i) => i);   // [0, 1, 2]
+
+const fromOtherMethod = (new Array(3)).fill(0).map( (v, i) => i)   // [0, 1, 2]
+
+p(Array.from(['a', 'b', 'c']))
+
+// negative index with array
+
+const arrNegative = [1, 2, 3];
+
+arrNegative[-1] = 0;
+
+arrNegative  // [1, 2, 3]  it will insert -1 as a key in arrNegative
+
+// with negative indexes array behaves as same as object, i.e. they started inserting values in key-value pairs.
