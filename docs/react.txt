@@ -1,0 +1,445 @@
+React?
+React is a front-end JavaScript library developed by Facebook in 2011.
+It follows the component based approach which helps in building reusable UI components.
+Even though it was open-sourced only in 2015, it has one of the largest communities supporting it.
+Life Cycle Methods?
+ 
+ 
+Constructor :  Runs only once (Its job is to set initial state)
+Static getDerivedStateFromProps:  
+replacement of componentWillReceiveProps
+This method is static bcs we don’t to give access of this keyword                       in this method, so that user can not directly set state using this.setState.
+componentWillMount
+componentDidMount 
+shouldComponentUpdate:  returns a boolean value
+ 
+We can stop our component from re rendering on state change by returning false from shouldComponentUpdate Method.
+ shouldComponentUpdate(nextProps, nextState) {
+    if (this.props.number === nextProps.number) {
+             return false;
+         }  else  {
+           return true;
+         }
+    }
+ 
+************************************************************************************************Prevents component from re rendering ?
+shouldComponentUpdate()
+React.PureComponent
+React.memo
+************************************************************************************************
+How React works? How Virtual-DOM works in React?
+React creates a virtual DOM. When state changes in a component it firstly runs a “diffing” algorithm, which identifies what has changed in the virtual DOM. The second step is reconciliation, where it updates the DOM with the results of diff.
+The HTML DOM is always tree-structured — which is allowed by the structure of HTML document. The DOM trees are huge nowadays because of large apps. Since we are more and more pushed towards dynamic web apps (Single Page Applications — SPAs), we need to modify the DOM tree incessantly and a lot. And this is a real performance and development pain.
+The Virtual DOM is an abstraction of the HTML DOM. It is lightweight and detached from the browser-specific implementation details. It is not invented by React but it uses it and provides it for free. ReactElements lives in the virtual DOM. They make the basic nodes here. Once we defined the elements, ReactElements can be rendered into the "real" DOM.
+Whenever a ReactComponent is changing the state, diff algorithm in React runs and identifies what has changed. And then it updates the DOM with the results of diff. The point is - it’s done faster than it would be in the regular DOM.
+************************************************************************************************
+JSX?
+JSX stands for JavaScript XML.
+JSX allows us to write HTML elements in JavaScript and place them in the DOM without any createElement()  and/or appendChild() methods.
+JSX allow you to write code like HTML syntax which transforms into javascript object.
+************************************************************************************************
+When you use something like <MyComponent /> in JSX, is that a component, an element, or an instance ?
+ 
+It’s an element but not a DOM element. It’s a React element. The clue here is that any JSX tag gets translated to a React.createElement call. Keep that in mind. CREATE. ELEMENT.
+************************************************************************************************
+React Component ?
+A React Component is a template. A blueprint. A global definition. This can be either a function or a class (with a render function). 
+To define a React component class, you need to extend React.Component.
+ 
+class Car extends React.Component {
+    render() {
+      return <h2>Hi, I am a Car!</h2>;
+    }
+}
+ 
+************************************************************************************************
+React Element?
+A React Element is what gets returned from components. It’s an object that virtually describes the DOM nodes that a component represents. 
+With a function component, this element is the object that the function returns. 
+With a class component, the element is the object that the component’s render function returns.
+ React elements are not what we see in the browser. They are just objects in memory and we can’t change anything about them.
+************************************************************************************************
+ReactDOM ?
+The react-dom package provides DOM-specific methods that can be used at the top level of your app and as an escape hatch to get outside of the React model if you need to. Most of your components should not need to use this module.
+render()
+hydrate()
+unmountComponentAtNode()
+findDOMNode()
+createPortal()
+ 
+************************************************************************************************
+Why can’t Browsers read JSX?
+Browsers can only read JavaScript objects but JSX in not a regular JavaScript object. Thus to enable a browser to read JSX, first, we need to transform JSX file into a JavaScript object using JSX transformers like Babel and then pass it to the browser.
+************************************************************************************************
+Render in React ?
+Render function in react.js is used to return the HTML you want to display in a component.
+Every Render function contains a return statement
+This return statement can contain only one parent html tag
+************************************************************************************************
+Synthetic Events in React ?
+Synthetic events are the objects which act as a cross-browser wrapper around the browser’s native event. They combine the behavior of different browsers into one API. This is done to make sure that the events show consistent properties across different browsers.
+************************************************************************************************
+Refs ?
+Refs is the shorthand for References in React. It is an attribute which helps to store a reference to a particular React element or component, which will be returned by the components render configuration function.
+************************************************************************************************
+HOC ?
+A higher-order component in React is a pattern used to share common functionality between components without repeating code. A higher-order component is actually not a component though, it is a function. A HOC function takes a component as an argument and returns a component. It transforms a component into another component and adds additional data or functionality. In short:
+ 
+  const NewComponent = (BaseComponent) => {
+    // ... create new component from old one and update
+    return UpdatedComponent 
+ }  
+ 
+A higher-order component is a function that takes a component as an argument and returns a component. This means that a HOC will always have a form similar to the following:
+ 
+  import React from 'react';
+  const higherOrderComponent = (WrappedComponent) => {
+  	class HOC extends React.Component {
+  	   render() {
+  		return <WrappedComponent />;
+ 	   }
+      }
+  	return HOC:
+  };
+HOC adds additional functionality to the component. 
+************************************************************************************************
+Controlled and uncontrolled components ?
+A Controlled Component is one that takes its current value through props and notifies changes through callbacks like onChange. A parent component “controls” it by handling the callback and managing its own state and passing the new values as props to the controlled component. You could also call this a “dumb component”.
+An Uncontrolled Component is one that stores its own state internally, and you query the DOM using a ref to find its current value when you need it. This is a bit more like traditional HTML.
+************************************************************************************************
+PureComponent
+ 
+React's PureComponent does a shallow compare on the component's props and state. If nothing has changed, it prevents the rerender of the component. If something has changed, it rerenders the component.
+We should use Pure Component only when we have simple state, bcs it only compares object instance and not the nested object or keys.
+ 
+ import React, { Component, PureComponent } from 'react';
+ 
+  class Square extends PureComponent {
+   render() {
+     return <Item>{this.props.number * this.props.number}</Item>;
+   }
+  }
+ 
+************************************************************************************************
+Pure Function and is reducer a pure function ?
+Pure functions take an input value (a parameter or argument) and depending on that input, produce an output value, that's all.
+const pureFunction = (x) => {
+return x* 2 
+} 
+ 
+The reducer is a pure function that takes the previous state and an action, and returns the next state
+************************************************************************************************
+Promises and callback function ?
+ 
+Promise are used to handle asynchronous operations in JavaScript.
+ 
+Example to make promise?
+Resolve and reject in promise
+************************************************************************************************
+Axios
+Axios is a hugely popular HTTP client that allows us to make GET and POST requests from the browser. 
+const makePOST = async (url, data, headers, parsedError = true) => {
+    try{
+        let result = await axios.post(url, data, {headers})
+        return defaultSuccessHandler(result);
+    }catch(e){
+        return parsedError ? parseNetworkError(e) : e;
+    }
+}
+ 
+ 
+************************************************************************************************
+React Patterns ?
+ 
+context api pattern (here)
+Context provides a way to pass data through the component tree without having to pass props down manually at every level.
+Render props (here)
+Presentation component
+************************************************************************************************
+Render Props ?
+The term “render prop” refers to a technique for sharing code between React components using a prop whose value is a function.
+A component with a render prop takes a function that returns a React element In working with render props, you pass a render function to a component that, in turn, returns a React element and calls it instead of implementing its own render logic.
+This render function is defined by another component, and the receiving component shares what is passed through the render function.
+ <DataProvider render={data => (
+    <h1>Hello {data.target}</h1>
+  )}/> 
+   
+  Class BaseComponent extends Component {
+    render() {
+    
+      return <Fragment>{this.props.render()} </Fragment>;
+    }
+  }
+ 
+************************************************************************************************
+Css - in -js react ?
+CSS-in-JS” refers to a pattern where CSS is composed using JavaScript instead of defined in external files. Read a comparison of CSS-in-JS libraries here.
+ 
+style={{color: "red"}}
+************************************************************************************************
+Code Splitting - Lazy Loading
+The React.lazy function lets you render a dynamic import as a regular component.
+https://reactjs.org/docs/code-splitting.html
+************************************************************************************************
+FLUX ?
+Flux is an architectural pattern which enforces the unidirectional data flow. It controls derived data and enables communication between multiple components using a central Store which has authority for all data. Any update in data throughout the application must occur here only. Flux provides stability to the application and reduces run-time errors.
+************************************************************************************************
+Alternative of Redux ?
+mobX
+Apollo client + graphQL
+RxJS
+************************************************************************************************
+Redux ?
+It is a predictable state container for JavaScript applications and is used for the entire application state management. 
+Three principles that Redux follows ?
+Single source of truth.
+State is read only.
+Changes are made with pure functions: Pure functions are those whose return value depends solely on the values of their arguments.
+************************************************************************************************
+Explain the components of Redux ?
+Redux is composed of the following components:
+Action — Actions are payloads of information that send data from our application to our store. They are the only source of information for the store. We send them to the store using store.dispatch(). 
+	      Dispatches an action.This is the only way to trigger a state change.
+ 
+  const names = (data) => dispatch => (
+    dispatch(getnames(data))
+  )    
+   const getNames = names => (
+   {
+     type: GET_NAMES,
+     names
+   }
+  )
+ 
+ 
+ 
+Reducer — Reducers specify how the application’s state changes in response to actions sent to the store. Remember that actions only describe what happened, but don’t describe how the application’s state changes. So this place determines how state will change to an action.
+ 
+function allNames(state = [], action) {
+    switch (action.type) {
+        case GET_NAMES:
+            return action.names
+        default:
+            return state
+    }
+}
+ 
+export const rulesReducer = combineReducers({
+    allNames
+})
+ 
+Store — The Store is the object that brings Action and Reducer together. The store has the following responsibilities: 
+Holds application state.
+Allows access to state via getState().
+Allows state to be updated via dispatch(action).
+Registers listeners via subscribe(listener).
+Handles unregistering of listeners via the function returned by subscribe(listener).
+It’s important to note that we’ll only have a single store in a Redux application. When we want to split your data handling logic, we’ll use reducer composition instead of many stores.
+import { createStore, applyMiddleware, combineReducers } from 'redux'
+import {Provider} from 'react-redux'
+import { namesReducer, addressReducer } from './reducers';
+ 
+const rootReducer = combineReducers({
+    names: namesReducer,
+    address: addressReducer,
+});
+ 
+const store = createStore(
+    rootReducer,
+    applyMiddleware(thunk)
+)
+ 
+ReactDOM.render(
+    <IntlProvider locale="en">
+        <Provider store={store} >
+            <App />
+        </Provider>
+    </IntlProvider>,
+    document.getElementById('root')
+)
+State change in component
+function mapStateToProps(state) {
+  return {
+        names: state.rules.names
+  }
+}
+ 
+function mapDispatchToProps(dispatch) {
+    return {
+      fetchAllnames: bindActionCreators(rulesActions.fetchAllnames,      dispatch),
+    };
+}
+ 
+export default connect(mapStateToProps, mapDispatchToProps) (SettingsHome);
+************************************************************************************************
+What is the second argument that can optionally be passed to setState and what is its purpose?
+A callback function which will be invoked when setState has finished and the component is re-rendered.Since the setState is asynchronous, which is why it takes in a second callback function. With this function, we can do what we want immediately after state has been updated.
+************************************************************************************************
+What is Local Storage ?
+//setter
+localStorage.setItem('myData', data);
+// getter
+localStorage.getItem('myData');
+// remove
+localStorage.removeItem('myData');
+// remove all
+localStorage.clear();
+************************************************************************************************
+Client Side Storage Technology ?
+Cookies
+Local Storage
+Session Storage
+IndexedDB
+localForage
+ 
+https://mattwest.design/choosing-the-best-client-side-storage-technology-for-your-project
+************************************************************************************************
+ 
+Error Boundary ?
+Static getDerivedStateFromError
+ // used to render fallback UI
+    static getDerivedStateFromError(error) {
+      // Update state so the next render will show the fallback UI.
+      return { hasError: true };
+   }
+ 
+componentDidCatch
+// used to log the error to an error reporting service
+    componentDidCatch(error, info) {
+      // Display fallback UI
+      this.setState({ hasError: true });
+    
+      logErrorToMyService(error, info);
+      console.log('error:', error);
+      console.log('info:', info);
+    }
+ 
+************************************************************************************************
+* and ^ in package.json?
+version Must match version exactly
+>version Must be greater than version
+>=version etc
+<version
+<=version
+~version “Approximately equivalent to version” See semver
+^version “Compatible with version” See semver
+1.2.x 1.2.0, 1.2.1, etc., but not 1.3.0
+http://... See ‘URLs as Dependencies’ below
+* Matches any version
+"" (just an empty string) Same as *
+version1 - version2 Same as >=version1 <=version2.
+range1 || range2 Passes if either range1 or range2 are satisfied.
+git... See ‘Git URLs as Dependencies’ below
+user/repo See ‘GitHub URLs’ below
+tag A specific version tagged and published as tag See npm-dist-tag
+path/path/path See Local Paths below
+ 
+************************************************************************************************
+PropTypes
+Used to check the type of the props passed in the component.
+************************************************************************************************
+Profiling
+ 
+The Profiler measures how often a React application renders and what the “cost” of rendering is. Its purpose is to help identify parts of an application that are slow and may benefit from optimizations such as memoization.
+A Profiler can be added anywhere in a React tree to measure the cost of rendering that part of the tree. It requires two props: an id (string) and an onRender callback (function) which React calls any time a component within the tree “commits” an update.
+For example, to profile a Navigation component and its descendants:
+ 
+render(
+    <App>
+      <Profiler id="Navigation" onRender={callback}>
+        <Navigation {...props} />
+      </Profiler>
+      <Main {...props} />
+    </App>
+  );
+ 
+ 
+************************************************************************************************
+Hooks
+ 
+Hooks let you use state and other React features without writing a class.
+useState:
+ // age is state and setState is setter for the .
+ const [age, setAge] = useState(0); // here 0 is the initial .
+ 
+ value={name} // name state can be directly used without using  this.state.name syntax.
+ onChange={e => setName(e.target.value)} // setName to update state.
+ 
+ 
+useEffect:
+Performs the same operation as of react lifecycle methods does, like didMount, willMount.
+// [] behaves as componentWillMount, only calls one time.
+// [nirvana] only runs when nirvana changes.
+// no second parameter will run on every update, componentDidUpdate.
+ 
+ useEffect(() => {
+    if(born) {
+        document.title = "nirvana born";
+    }
+ }, [nirvana]);      // always run on second parameter updates.
+ 
+useMemo:
+ useMemo is used for memorizing the previous render of component so
+ that component will not get render again, it will only get rendered if
+ props or state gets updated.
+ 
+ const memoChild = useMemo(() => {
+   return <Child />
+ }, [i]);   // if we do not pass i here i.e. [] then it will only   call at initial rendering.
+            // on passing i it will get called whenever i gets updated.
+ 
+ 
+useSelector and useDispatch:
+ // useSelector is use to get state from store
+ const counter = useSelector( (state) => state.counter);
+ 
+ // useDispatch is use to dispatch state to reducer
+ const dispatch = useDispatch();
+ 
+ <h1>Counter : {counter} </h1>
+          
+ <button onClick={() => dispatch({type: "INCREMENT", payload:10 })                 }>INCREMENT</button>
+ 
+ 
+useParams:
+// useParams is for reading values from URL.
+const {firstName,lastName} = useParams();
+ 
+UseLocation:
+ // use for fetching multiple parameters from Link.
+ const location = useLocation();
+ <Link to={
+       {
+          pathname: "/memo",
+          state: {
+             from: "root"
+          }
+        }
+  }>Memo</Link>
+ 
+// useLocation will return both the parameter pathname and state.
+ 
+ 
+************************************************************************************************
+State is async. Why?
+ 
+setState actions are asynchronous and are batched for performance gains. This is explained in the documentation of setState.
+setState() does not immediately mutate this.state but creates a pending state transition. Accessing this.state after calling this method can potentially return the existing value. There is no guarantee of synchronous operation of calls to setState and calls may be batched for performance gains.
+Dispatching action in redux is synchronous.
+************************************************************************************************
+Force React Component Render
+ 
+The first is using this.forceUpdate(), which skips shouldComponentUpdate:
+ 
+ someMethod() {
+    // Force a render without state change...
+    this.forceUpdate();
+}
+************************************************************************************************
+Redux Saga vs Redux Thunk?
+************************************************************************************************
+React Router ?
+************************************************************************************************
+Middleware ?
+ 
+ 

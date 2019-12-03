@@ -1,0 +1,132 @@
+OOP’s
+
+Object-oriented programming (OOP) is a way of writing computer programs using the idea of "objects" to represent data and methods rather than functions and logic.
+Features of OOP’s:
+
+Polymorphism: One Name Many Things.
+
+Polymorphism refers to the ability of OOPs programming languages to differentiate between entities with the same name efficiently.
+
+Ex: Overloading, Overriding
+
+Inheritance: 
+	
+It is the mechanism in java by which one class is allowed to inherit the features(fields and methods) of another class.
+
+Encapsulation: Hiding the data.
+
+Encapsulation is defined as the wrapping up of data under a single unit.
+
+Encapsulation can be achieved by Declaring all the variables in the class as private and writing public methods in the class to set and get the values of variables.
+
+Abstraction: Using the data without knowing its background details.
+
+Data Abstraction is the property by virtue of which only the essential details are displayed to the user.
+
+In java, abstraction is achieved by interfaces and abstract classes. We can achieve 100% abstraction using interfaces.
+
+Class: 
+
+A class is a user defined blueprint or prototype from which objects are created. It represents the set of properties or methods that are common to all objects of one type.
+
+
+Object : 
+
+An object can be defined as an instance of a class, and there can be multiple instances of a class in a program. An Object contains both the data and the function, which operates on the data.
+
+An object consists of:
+State : It is represented by attributes of an object. It also reflects the properties of an object.
+Behavior : It is represented by methods of an object. It also reflects the response of an object with other objects.
+Identity : It gives a unique name to an object and enables one object to interact with other objects.
+Example of an object: dog
+
+Method :
+A method is a collection of statements that perform some specific task and return result to the caller.
+Association, Aggregation and Composition:
+Aggregation implies a relationship where the child can exist independently of the parent. Example: Class (parent) and Student (child). Delete the Class and the Students still exist. 
+Composition implies a relationship where the child cannot exist independent of the parent. Example: House (parent) and Room (child).
+Association is a relationship between two objects. It defines the diversity between objects. In this OOP concept, all objects have their separate lifecycle, and there is no owner. Example, many students can associate with one teacher while one student can also associate with multiple teachers.
+
+************************************************************************************************
+Java Features
+
+Object Oriented. In Java, everything is an Object.
+Platform Independent.
+Simple.
+Secure.
+Architecture-neutral.
+Portable.
+Robust.
+Multithreaded.
+
+************************************************************************************************
+Synchronization in JAVA
+
+https://www.geeksforgeeks.org/synchronized-in-java/
+
+
+************************************************************************************************
+Deep Copy vs Shallow Copy
+
+https://www.geeksforgeeks.org/clone-method-in-java-2/
+
+
+************************************************************************************************
+Abstract Class vs Interface
+
+https://www.geeksforgeeks.org/difference-between-abstract-class-and-interface-in-java/
+
+
+Only interfaces can have default methods. Abstract classes can’t have default methods.
+
+Interface can have only abstract methods. Abstract class can have abstract and non-abstract methods.
+
+After Java 8, an interface can have default and static methods along with abstract methods.
+
+
+
+************************************************************************************************
+Why Interface is providing default and static methods?
+
+Normally, static method in interface is used as Helper methods while default method are used as a default implementation for classes that implements that interface. Interface default methods: It helps in avoiding utility classes, such as all the Collections class method can be provided in the interfaces itself.
+
+https://www.geeksforgeeks.org/static-method-in-interface-in-java/
+
+************************************************************************************************
+
+
+String is Immutable
+
+The string is Immutable in Java because String objects are stored in Constant String pool.
+
+Another reason of why String class is immutable could die due to HashMap. Since Strings are very popular as HashMap key, it's important for them to be immutable so that they can retrieve the value object which was stored in HashMap.
+
+Thread Safe
+
+Every immutable object in Java is thread safe, that implies String is also thread safe. String can not be used by two threads simultaneously.
+
+************************************************************************************************
+String Buffer and String Builder
+
+
+No.
+StringBuffer
+StringBuilder
+1)
+StringBuffer is synchronized i.e. thread safe. It means two threads can't call the methods of StringBuffer simultaneously.
+StringBuilder is non-synchronized i.e. not thread safe. It means two threads can call the methods of StringBuilder simultaneously.
+2)
+StringBuffer is less efficient than StringBuilder.
+StringBuilder is more efficient than StringBuffer.
+
+
+
+************************************************************************************************
+
+== vs equals()
+
+We can use == operators for reference comparison (address comparison) and .equals() method for content comparison. In simple words, == checks if both objects point to the same memory location whereas .equals() evaluates to the comparison of values in the objects.
+
+
+
+

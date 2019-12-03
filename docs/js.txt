@@ -1,0 +1,377 @@
+== vs ===
+
+The ‘==’ operator tests for abstract equality i.e. it does the necessary type conversions before doing the equality comparison.
+
+But the ‘===’ operator tests for strict equality i.e it will not do the type conversion hence if the two values are not of the same type, when compared, it will return false.
+
+ // In R.H.S. string "9" is converted into number 9, hence returns true.
+ 
+console.log(9 == "9"); // Output: true
+      
+console.log(9 === “9”) // Output: false
+
+== vs Object.is
+
+The “==” and “===” operator treats the number values “+0” and “-0” as equal whereas Object.is() method treats them as not equal. 
+
+Apart from that the “==” and “===” operator does not treat Number.Nan equal to Nan.
+
+
+*********************************************************************************************************
+require vs import
+
+
+
+
+*********************************************************************************************************
+Hoisting 
+
+https://scotch.io/tutorials/understanding-hoisting-in-javascript
+
+Hoisting is a JavaScript mechanism where variables and function declarations are moved to the top (not definition) of their scope before code execution.
+
+Variable declarations are processed before any code is executed.
+
+Note: All undeclared variables are global variables i.e we can use variables without declaring them
+
+*********************************************************************************************************
+Undefined vs ReferenceError
+
+console.log(typeof variable)     //  Output: undefined
+
+console.log(variable)     // ReferenceError : variable is not defined
+
+ReferenceError is thrown when trying to access a previously undeclared variable.
+
+
+*********************************************************************************************************
+Let, const and var
+
+Variables created without a declaration keyword (var, let, or const) are always global, even if they are created inside a function.
+
+var (ES5): It is globally scoped when a var variable is declared outside a function and if declared inside it is locally scoped. 
+
+console.log(hoist);  // Output: undefined
+
+console.log(a);      // Output: Reference Error: a is not defined
+
+var hoist = 'The variable has been hoisted.';
+
+// Don't do this!
+
+var thing = 'something'
+var thing = 'something else' // perhaps somewhere totally different in your code
+console.log(thing) // 'something else'
+
+let (ES6): let are block scoped and not function scoped. 
+
+console.log(hoist);  // Output: Reference Error: hoist is not defined
+
+let hoist = 'The variable has been hoisted.';
+
+// Don't do this!
+
+let thing = 'something'
+let thing = 'something else' // Error, thing has already been 
+declared
+
+Like before, for the var keyword, we expect the output of the log to be undefined. However, since the es6 let doesn't take kindly on us using undeclared variables, the interpreter explicitly spits out a Reference error.
+This ensures that we always declare our variables first.
+However, we still have to be careful here. An implementation like the following will result in an output of undefined instead of a Reference error.
+let hoist;
+ 
+console.log(hoist)  // Output: undefined
+ 
+Hoist = “Hoisted”;
+ 
+Hence, to err on the side of caution, we should declare then assign our variables to a value before using them.
+const : 
+
+The const keyword was introduced in es6 to allow immutable variables. That is, variables whose value cannot be modified once assigned.
+With const, just as with let, the variable is hoisted to the top of the block.
+Let's see what happens if we try to reassign the value attached to a const variable.
+ 
+const PI = 3.142;
+ 
+PI = 22/7; // Let's reassign the value of PI
+ 
+console.log(PI); // Output: TypeError: Assignment to constant variable.
+
+*********************************************************************************************************
+Classes
+
+Classes are basically functions in JS.
+
+
+// class definition of Car
+class Car {
+  constructor(color) {
+    this.color = color;
+  }
+}
+ 
+// Check the type of Car 
+console.log(typeof(Car)) //prints "function"
+
+If you inspect the newCar object in detail you would see similar structure when you create objects with function constructor. The only difference is that the constructor displays the keyword “class”.
+
+*********************************************************************************************************
+Strict mode
+
+By enabling strict mode, we opt into a restricted variant of JavaScript that will not tolerate the usage of variables before they are declared.
+
+Use ‘strict’
+
+*********************************************************************************************************
+
+Function currying
+
+*********************************************************************************************************
+Closures and Scope
+
+********************************************************************************************************
+
+Prototype Chaining
+
+Objects in JavaScript have an internal property known as prototype. It is simply a reference to another object and contains common attributes/properties across all instances of the object. An object's prototype attribute specifies the object from which it inherits properties.
+
+When we copy one object into other than if two property has same name than it will keep a copy of both the keys,and by default it will return the last one.
+
+
+
+Here getColor is chained.
+
+*********************************************************************************************************
+
+Prototypical Inheritance
+
+*********************************************************************************************************
+
+Object vs Map
+
+here
+
+Object
+Map
+The data-type of the key-field is restricted to integer, strings, and symbols.
+The key-field can be of any data-type (integer, an array, even an object!)
+The original order of elements is preserved
+This is not true in case of objects.
+The Map is an instance of an object but the vice-versa is not true.
+
+
+
+*********************************************************************************************************
+Maps vs Weak Map
+
+JS Objects only supports 1 key as an objects, that why we need Maps.
+If we add two key as an object than it will only remember the last one.
+
+https://www.sitepoint.com/es6-collections-map-set-weakmap-weakset/
+
+Map
+WeakMap
+Map in addition to objects, accepts primitive data types such as strings, numbers etc.
+ Accepts only objects as keys
+Size exists.
+no size property exists in WeakMap.
+Has Map.keys() to get the keys.
+No method to get keys.
+
+
+WeakMap objects doesn't avert garbage collection if there are no references to the object which is acting like a key.
+Map.clear() to clear map.
+No function like clear() in weakMap.
+
+*********************************************************************************************************
+Set vs Weak Set
+
+https://www.sitepoint.com/es6-collections-map-set-weakmap-weakset/
+
+Set
+WeakSet
+Sets can store any value.
+WeakSets are collections of objects only.
+Size exists.
+no size property exists in WeakSet.
+
+
+WeakSet does not have clear, keys, values, entries, forEach methods.
+Iterable
+WeakSet is not iterable.
+
+
+
+*********************************************************************************************************
+
+forEach loop
+
+There is no way to stop or break a forEach() loop other than by throwing an exception. If you need such behavior, the forEach() method is the wrong tool.
+ You cannot ‘break’
+You cannot ‘continue’
+
+*********************************************************************************************************
+
+
+Object.freeze vs Object.seal
+
+
+Freeze
+Seal
+Properties become immutable
+We can update only existing properties i.e. existing properties are mutable.
+We can not add new properties
+same
+
+Call, Bind and Apply
+
+ 
+var obj = {num: 2};
+ 
+var addToThis = function(a, b, c) {
+    return this.num + a + b + c;
+};
+ 
+addToThis.call(obj, 1, 2, 3);               // 8
+addToThis.apply(obj, [1, 2, 3]);            // 8
+var bound = addToThis.bind(obj);            
+bound(1, 2, 3);                             // 8
+
+
+*********************************************************************************************************
+Callback
+
+A callback function is called after a given task. It allows other code to be run in the meantime and prevents any blocking.  Being an asynchronous platform, Node.js relies heavily on callback. All APIs of Node are written to support callbacks.
+Callback hell 
+
+Callback hell is the result of heavily nested callbacks that make the code not only unreadable but also difficult to maintain.
+How to avoid callback hell.
+
+By using Promises.
+Async Await.
+
+
+*********************************************************************************************************
+Multithreading using Web Worker
+
+Webworker runs separately from main thread.
+
+Web Workers are Javascript scripts executed from an HTML page that runs on a background thread away from the main execution thread. Data is sent between the main thread and workers through messages. Since these workers run on a separate thread than the main execution thread, you can utilize web workers to run process intensive tasks from the browser without creating blocking instances.
+
+*********************************************************************************************************
+Event Bubbling and Capturing
+
+Event flow is the order in which event is received on the web page. If you click on an element like div or on the button , which is nested to other elements, before the click is performed on the target element. It must trigger the click event each of its parent elements first, starting at the top with the global window object. By default, every element of HTML is child of the window object.
+
+In Event Bubbling events goes from bottom to top, i.e click event will go from child div to all the parent div’s.
+
+Event Capturing follows bottom to top flow.
+
+<!-- In event bubbling if we click on child div then fist it will call event for id="child" than id="parent" -->
+    <!-- In event capturing if we click on child div then fist it will call event for id="parent" than id="child" -->
+    <div id="parent">
+      <div id="child">
+        child
+      </div>
+      <div id="other">
+        Other
+      </div>
+    </div>
+
+
+Default JS follows event bubbling.
+
+
+*********************************************************************************************************
+SetTimeout and SetInterval
+
+setTimeout(function, milliseconds)
+Executes a function, after waiting a specified number of milliseconds.
+
+setInterval(function, milliseconds)
+Same as setTimeout(), but repeats the execution of the function continuously.
+The clearTimeout() method stops the execution of the function specified in setTimeout().
+window.clearTimeout(timeoutVariable)
+ 
+*********************************************************************************************************
+Factory Functions
+
+When you use regular functions to build objects, they are called factory functions.
+
+Factory functions are functions that produces objects. In JavaScript, there are two ways to create objects, one by using either function constructors or classes. In either case, you have to use a new keyword. And secondly, by using regular functions. 
+// Factory Function
+    let Car = function(color) {
+        return Object.assign({}, {
+        color: color
+        });
+    };
+  
+    // New Object using factory function
+    let redCar = Car('red');
+ 
+// Constructor
+    let Bike = function(color) {
+        this.color = color;
+    }
+ 
+    // New object using constructor
+    let redBike = new Bike("red");
+ 
+ 
+*********************************************************************************************************
+Mixins
+
+Mixins are these pieces of code that you can mix with other objects to extend their functionality. Basically, you can borrow features from different mixins to compose the kind of object you desire.
+
+Composing Object using Mixins
+You can compose different methods by using the Object.assign() method where you can borrow methods from two different mixins.
+Function Mixins
+Using a factory function with closures you can build function mixins. Each mixin would take an Object as a parameter and returns a new object that would take passed object and extend it with mixin’s functionality.
+
+*********************************************************************************************************
+Symbols and Generator
+
+The Symbol.iterator well-known symbol specifies the default iterator for an object.
+
+// Symbol method is present on iterable objects (like array, string)
+ 
+const myArray = [1, 2, 3]
+ 
+let iterator = myArray[Symbol.iterator]();
+ 
+iterator.next()    // { value: 1, done: false}
+iterator.next()    // { value: 2, done: false}
+iterator.next()    // { value: 3, done: false}
+iterator.next()    // { value: undefined, done: true}
+
+A normal function such as this one cannot be stopped before it finishes its task i.e its last line is executed. It follows something called run-to-completion model.
+The only way to exit the normalFunc is by returning from it, or throwing an error. If you call the function again, it will begin the execution from the top again.
+In contrast, a generator is a function that can stop midway and then continue from where it stopped.
+Here are some other common definitions of generators —
+Generators are a special class of functions that simplify the task of writing iterators.
+A generator is a function that produces a sequence of results instead of a single value, i.e you generate ​a series of values.
+In JavaScript, a generator is a function which returns an object on which you can call next().
+
+// Unlike normal arrays generator will only take memory when it is yield using next().
+ 
+// making myArray with generators
+// * before the function name indicates that the function is of generator type
+ 
+function *generator() {
+    yield 1;
+    yield 2;
+    yield 3;
+}
+ 
+iterator = generator();
+ 
+iterator.next()    // { value: 1, done: false}
+iterator.next()    // { value: 2, done: false}
+iterator.next()    // { value: 3, done: false}
+iterator.next()    // { value: undefined, done: true}
+
+
+*********************************************************************************************************
+Static and Instance Method
+
+Static methods goes directly inside the class object while instance method (simple method) goes in the prototype of the object.
