@@ -1,0 +1,30 @@
+<script>
+    if(window.Worker) {
+        var myWorker = new Worker("worker.js");
+
+        var message = {addthis: {num1:1, num2: 3 }};
+
+        myWorker.postMessage(message);
+
+        myWorker.onmessage = (e) => {
+            console.dir(e.data.result);
+        }
+    }
+
+    // Web Workers are Javascript scripts executed from an HTML page 
+    // that runs on a background thread away from the main execution thread. 
+    // Data is sent between the main thread and workers through messages. 
+    // Since these workers run on a separate thread than the main execution thread, 
+    // you can utilize web workers to run process intensive tasks from the browser without
+    //  creating blocking instances.
+
+    // Web worker has no access to:
+
+        // window object
+        // document object
+        // parent object
+
+    // Web worker has access to:
+
+        // Navigator Obejct (useragent, geolocation, cookeyenabled)
+</script>

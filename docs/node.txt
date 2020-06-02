@@ -1,0 +1,70 @@
+Key Features
+
+Asynchronous
+Single Threaded
+Active community support
+No Buffering : Node.js applications never buffer any data. They simply output the data in chunks. 
+
+*********************************************************************************************************
+When to use Node JS
+
+It’s ideal to use Node.js for developing streaming or event-based real-time applications that require less CPU usage such as.
+Chat applications.
+Game servers.
+It’s good to use Node.js, when you need high levels of concurrency but less amount of dedicated CPU time
+Best for building client-side applications that also use JavaScript.
+
+*********************************************************************************************************
+When not to use Node JS
+
+It is a single threaded framework, so we should not use it for cases where the application requires long processing time. If the server is doing some calculations, it won’t be able to process any other requests.
+
+*********************************************************************************************************
+What is Node.js
+
+Node.js is server-side scripting based on Google’s V8 JavaScript engine. It uses an event-driven, non-blocking I/O model. It is lightweight and so
+efficient. Node.js has a package ecosystem called npm.
+
+*********************************************************************************************************
+Why is Node.js Single-threaded?
+
+Node.js is single-threaded for async processing. By doing async processing on a single-thread under typical web loads, more performance and scalability can be achieved as opposed to the typical thread-based implementation.
+
+
+
+*********************************************************************************************************
+What is REPL in Node.js?
+
+REPL means Read-Eval-Print-Loop. It is a virtual environment that comes with Node.js. We can quickly test our JavaScript code in the Node.js REPL environment.
+To launch the REPL in Node.js, just open the command prompt and type node. It will change the prompt to > in Windows and MAC.
+Now we can type and run our JavaScript easily. For example, if we type 10 + 20, it will print 30 in the next line.
+The REPL shell allows entry to javascript directly into a shell prompt and evaluates the results. For the purpose of testing, debugging, or experimenting, REPL is very critical.
+
+*********************************************************************************************************
+What is the difference between Asynchronous and Non-blocking?
+
+Asynchronous literally means not synchronous. We are making HTTP requests which are asynchronous, which means we are not waiting for the server response. We continue with other block and respond to the server response when we received.
+The term Non-Blocking is widely used with IO. For example non-blocking read/write calls return with whatever they can do and expect caller to execute the call again. Read will wait until it has some data and put calling thread to sleep.
+ 
+*********************************************************************************************************
+Which is the first argument typically passed to a Node.js callback handler?
+Typically, the first argument to any callback handler is an optional error object. The argument is null or undefined if there is no error. 
+*********************************************************************************************************
+NPM in Node.js?
+
+An online repository for Node.js packages.
+Command-line utility for installing packages, version management and dependency management of Node.js packages.
+ 
+*********************************************************************************************************
+CORS ?
+
+CORS essentially means cross-domain requests. The easiest way to get CORS working in Express is by using the cors npm module. The Access-Control-Allow-Origin header determines which origins are allowed to access server resources over CORS (the * wildcard allows access from any origin).
+
+*********************************************************************************************************
+Express JS ?
+
+*********************************************************************************************************
+Middleware ?
+
+*********************************************************************************************************
+Can we achieve multithreading in NodeJS, if yes than how ?
