@@ -10,7 +10,8 @@
     * [use strict](#use-strict)
     * [Function Scope vs Block Scope](#function-scope-vs-block-scope)
     * [IIFE](#iife)
-    * [this](#this) \* [Arrow function vs Regular Function](#arrow-function-vs-regular-function)
+    * [this](#this)
+    * [Arrow function vs Regular Function](#arrow-function-vs-regular-function)
 
 ## Javascript Foundation
 
